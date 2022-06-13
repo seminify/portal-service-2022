@@ -1,8 +1,11 @@
 <html lang="ko">
-<li th:fragment="todoItem(item)">
+<li th:fragment="todoItem(item)" th:classappend="${item.completed?'completed':''}">
     <div class="view">
-        <input class="toggle" type="checkbox">
-        <label th:text="${item.title}">Buy a unicorn</label>
+        <form th:action="@{/{id}/toggle(id=${item.id})}" th:method="put">
+            <input class="toggle" type="checkbox" onchange="this.form.submit()"
+                   th:attrappend="checked=${item.completed?'true':null}">
+            <label th:text="${item.title}">Buy a unicorn</label>
+        </form>
         <button class="destroy"></button>
     </div>
     <input class="edit" value="Rule the web">
