@@ -1,0 +1,10 @@
+<html lang="ko">
+<li th:fragment="todoItem(item)">
+    <div class="view">
+        <input class="toggle" type="checkbox">
+        <label th:text="${item.title}">Buy a unicorn</label>
+        <button class="destroy"></button>
+    </div>
+    <input class="edit" value="Rule the web">
+</li>
+</html>

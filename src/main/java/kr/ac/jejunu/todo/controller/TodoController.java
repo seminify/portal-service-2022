@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 @RequestMapping("/")
 public class TodoController {
@@ -22,8 +25,21 @@ public class TodoController {
     @GetMapping
     public String index(Model model) {
         model.addAttribute("todo", new TodoTitle());
+        model.addAttribute("todos", getTodoItems());
         model.addAttribute("todoCount", todoRepository.count());
         return "index";
+    }
+
+    private List<TodoItemDto> getTodoItems() {
+        return todoRepository.findAll()
+                .stream()
+                .map(todo -> new TodoItemDto(todo.getId(),
+                        todo.getTitle(),
+                        todo.isCompleted()))
+                .collect(Collectors.toList());
+    }
+
+    public static record TodoItemDto(long id, String title, boolean completed) {
     }
 
     @PostMapping
