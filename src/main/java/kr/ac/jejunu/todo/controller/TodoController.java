@@ -25,7 +25,12 @@ public class TodoController {
         model.addAttribute("todo", new TodoTitle());
         model.addAttribute("todos", getTodoItems());
         model.addAttribute("todoCount", todoRepository.count());
+        model.addAttribute("numberOfActiveItems", getNumberOfActiveItems());
         return "index";
+    }
+
+    private int getNumberOfActiveItems() {
+        return todoRepository.countAllByCompleted(false);
     }
 
     private List<TodoItemDto> getTodoItems() {
@@ -53,6 +58,12 @@ public class TodoController {
 
         todo.setCompleted(!todo.isCompleted());
         todoRepository.save(todo);
+        return "redirect:/";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteTodoItem(@PathVariable("id") Long id) {
+        todoRepository.deleteById(id);
         return "redirect:/";
     }
 }
