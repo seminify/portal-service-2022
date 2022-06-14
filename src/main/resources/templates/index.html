@@ -12,7 +12,7 @@
     <header class="header">
         <h1>todos</h1>
         <form th:action="@{/}" method="post" th:object="${todo}">
-            <input class="new-todo" placeholder="What needs to be done?" autofocus
+            <input type="text" class="new-todo" placeholder="What needs to be done?" autofocus
                    th:field="*{title}">
         </form>
     </header>
@@ -44,20 +44,20 @@
         <th:block th:if="${numberOfActiveItems == 1}">
             <span class="todo-count"><strong>1</strong> item left</span>
         </th:block>
-        <!-- Remove this if you don't implement routing -->
-        <ul class="filters">
-            <li>
-                <a class="selected" href="#/">All</a>
-            </li>
-            <li>
-                <a href="#/active">Active</a>
-            </li>
-            <li>
-                <a href="#/completed">Completed</a>
-            </li>
-        </ul>
-        <!-- Hidden if no completed items are left ↓ -->
-        <button class="clear-completed">Clear completed</button>
+<!--        &lt;!&ndash; Remove this if you don't implement routing &ndash;&gt;-->
+<!--        <ul class="filters">-->
+<!--            <li>-->
+<!--                <a class="selected" href="#/">All</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#/active">Active</a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="#/completed">Completed</a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--        &lt;!&ndash; Hidden if no completed items are left ↓ &ndash;&gt;-->
+<!--        <button class="clear-completed">Clear completed</button>-->
     </footer>
 </section>
 <footer class="info">
