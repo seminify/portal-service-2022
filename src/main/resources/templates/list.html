@@ -3,8 +3,8 @@
     <div class="view">
         <form th:action="@{/{id}/toggle(id=${item.id})}" th:method="put">
             <input class="toggle" type="checkbox" onchange="this.form.submit()"
-                   th:attrappend="checked=${item.completed?'true':null}">
-            <label th:text="${item.title}">Buy a unicorn</label>
+                th:attrappend="checked=${item.completed?'true':null}">
+            <label th:text="${item.title}"></label>
         </form>
         <form th:action="@{/{id}(id=${item.id})}" th:method="delete">
             <button class="destroy"></button>
@@ -12,4 +12,5 @@
     </div>
     <input class="edit" value="Rule the web">
 </li>
+
 </html>
